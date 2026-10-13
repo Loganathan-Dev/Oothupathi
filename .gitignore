@@ -1,0 +1,31 @@
+﻿# Backups
+backup-*/
+*.backup
+
+# Cleanup scripts
+clean-logs*.ps1
+seed-*.ps1
+
+# Logs
+*.log
+
+# Node
+node_modules/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Build outputs
+dist/
+build/
+.vite/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

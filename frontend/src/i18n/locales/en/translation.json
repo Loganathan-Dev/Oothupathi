@@ -1,0 +1,58 @@
+{
+  "common": {
+    "app_name": "Oothupathi",
+    "manufacturing": "Manufacturing Excellence",
+    "get_quote": "Get a Quote",
+    "learn_more": "Learn More",
+    "contact_us": "Contact Us",
+    "view_all": "View All"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "products": "Products",
+    "manufacturing": "Manufacturing",
+    "customize": "Customize",
+    "gallery": "Gallery",
+    "careers": "Careers",
+    "contact": "Contact",
+    "faq": "FAQ"
+  },
+  "hero": {
+    "title": "Crafting Quality Products with Precision",
+    "subtitle": "Oothupathi delivers premium manufacturing solutions with uncompromising quality, innovation, and customer satisfaction at the heart of everything we do.",
+    "cta": "Explore Products",
+    "projects": "Projects Completed",
+    "satisfaction": "Satisfaction Rate"
+  },
+  "about": {
+    "title": "Leading the Way in Manufacturing",
+    "description": "Oothupathi has been at the forefront of manufacturing innovation for over two decades. We combine traditional craftsmanship with modern technology to deliver products that exceed expectations.",
+    "experience": "Years of Experience",
+    "clients": "Happy Clients",
+    "awards": "Awards Won",
+    "quality": "Quality Guarantee"
+  },
+  "products": {
+    "title": "Premium Manufacturing Solutions",
+    "subtitle": "Discover our comprehensive range of products designed to meet the highest industry standards."
+  },
+  "manufacturing": {
+    "title": "State-of-the-Art Manufacturing Facilities",
+    "subtitle": "Our modern manufacturing facility is equipped with the latest technology and machinery."
+  },
+  "customize": {
+    "title": "Bring Your Ideas to Life",
+    "subtitle": "Our custom manufacturing service allows you to create products that perfectly match your requirements."
+  },
+  "careers": {
+    "title": "Join Our Team",
+    "subtitle": "At Oothupathi, we believe in nurturing talent and fostering innovation."
+  },
+  "footer": {
+    "quick_links": "Quick Links",
+    "support": "Support",
+    "contact": "Contact",
+    "rights": "All rights reserved"
+  }
+}
