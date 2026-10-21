@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-// ✅ Use relative URL with proxy, or absolute URL
-const API_URL = import.meta.env.VITE_API_URL || 'https://oothupathi.onrender.com/api'
+// Uses the Vercel environment variable in production, falls back to localhost in dev
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
 
 const api = axios.create({
   baseURL: API_URL,
@@ -11,7 +11,7 @@ const api = axios.create({
   withCredentials: false,
 })
 
-// Request interceptor - Add token
+// Request interceptor to attach JWT token
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token')
@@ -23,25 +23,17 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 )
 
-// Response interceptor - Handle errors
+// Response interceptor for error handling
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    console.error('API Error:', {
-      url: error.config?.url,
-      method: error.config?.method,
-      status: error.response?.status,
-      message: error.response?.data?.message || error.message,
-    })
-
-    // Only redirect on 401 if not on login/register pages
+    console.error('API Error:', error.response?.data || error.message)
+    
+    // Auto-logout if token expires
     if (error.response?.status === 401) {
-      const currentPath = window.location.pathname
-      if (!currentPath.includes('/login') && !currentPath.includes('/register')) {
-        localStorage.removeItem('token')
-        localStorage.removeItem('user')
-        window.location.href = '/login'
-      }
+      localStorage.removeItem('token')
+      localStorage.removeItem('user')
+      window.location.href = '/login'
     }
     return Promise.reject(error)
   }
