@@ -1,9 +1,6 @@
-﻿import express from 'express'
+import express from 'express'
 import cors from 'cors'
-import dotenv from 'dotenv'
-import connectDB from './config/db.js'
 
-// Routes
 import authRoutes from './routes/authRoutes.js'
 import productRoutes from './routes/productRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
@@ -11,36 +8,49 @@ import enquiryRoutes from './routes/enquiryRoutes.js'
 import profileRoutes from './routes/profileRoutes.js'
 import adminRoutes from './routes/adminRoutes.js'
 import jobRoutes from './routes/jobRoutes.js'
-
-
-dotenv.config()
-connectDB()
+import customizationRoutes from './routes/customizationRoutes.js'
 
 const app = express()
 
-// âœ… CORS
+// CORS configuration
+const allowedOrigins = [
+  'https://oothupathi.vercel.app',
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'http://127.0.0.1:3000',
+]
+
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001', 'http://127.0.0.1:3000'],
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true)
+    }
+
+    console.error('CORS blocked origin:', origin)
+    return callback(new Error('Not allowed by CORS'))
+  },
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }))
-app.options('*', cors())
 
-// âœ… CRITICAL: Body parsers MUST come before routes!
+// Parse request bodies
 app.use(express.json({ limit: '50mb' }))
 app.use(express.urlencoded({ extended: true, limit: '50mb' }))
 
-// âœ… Request logger (helpful for debugging)
+// Request logger
 app.use((req, res, next) => {
-  console.log(`ðŸ“¡ ${req.method} ${req.originalUrl}`)
-  if (req.method === 'POST' || req.method === 'PUT') {
-    console.log('   Body:', JSON.stringify(req.body, null, 2))
-  }
+  console.log(`📡 ${req.method} ${req.originalUrl}`)
   next()
 })
 
-// âœ… Routes
+// Health check
+app.get('/health', (req, res) => {
+  res.json({ success: true, status: 'OK' })
+})
+
+// API routes
 app.use('/api/auth', authRoutes)
 app.use('/api/products', productRoutes)
 app.use('/api/orders', orderRoutes)
@@ -48,13 +58,9 @@ app.use('/api/enquiries', enquiryRoutes)
 app.use('/api/profile', profileRoutes)
 app.use('/api/admin', adminRoutes)
 app.use('/api/jobs', jobRoutes)
+app.use('/api/customization', customizationRoutes)
 
-// Health
-app.get('/health', (req, res) => {
-  res.json({ success: true, status: 'OK' })
-})
-
-// 404
+// 404 handler
 app.use((req, res) => {
   res.status(404).json({
     success: false,
@@ -64,7 +70,8 @@ app.use((req, res) => {
 
 // Error handler
 app.use((err, req, res, next) => {
-  console.error('âŒ Error:', err.message)
+  console.error('❌ Error:', err.message)
+
   res.status(err.status || 500).json({
     success: false,
     message: err.message || 'Internal Server Error',
