@@ -65,9 +65,9 @@ const PublicLayout = ({ children }) => {
       <div className="hidden lg:block bg-dark-900 text-white py-2 text-sm">
         <div className="container-custom flex justify-between items-center">
           <div className="flex items-center gap-6">
-            <a href="tel:+91978772674" className="flex items-center gap-2 hover:text-secondary-400">
+            <a href="tel:+919787772674" className="flex items-center gap-2 hover:text-secondary-400">
               <FaPhone className="text-secondary-500 text-xs" />
-              +91 978772674
+              +91 9787772674
             </a>
             <a href="mailto:SAI@oothupathi.com" className="flex items-center gap-2 hover:text-secondary-400">
               <FaEnvelope className="text-secondary-500 text-xs" />

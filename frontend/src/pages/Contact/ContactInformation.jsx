@@ -3,9 +3,9 @@ import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa'
 
 const ContactInformation = () => {
   const info = [
-    { icon: FaPhone, title: 'Phone', detail: '+1 (234) 567-890', link: 'tel:+1234567890' },
-    { icon: FaEnvelope, title: 'Email', detail: 'info@oothupathi.com', link: 'mailto:info@oothupathi.com' },
-    { icon: FaMapMarkerAlt, title: 'Address', detail: '123 Manufacturing Hub, Chennai, India', link: null },
+    { icon: FaPhone, title: 'Phone', detail: '9787772674', link: 'tel:9787772674' },
+    { icon: FaEnvelope, title: 'Email', detail: 'SAI@oothupathi.com', link: 'mailto:SAI@oothupathi.com' },
+    { icon: FaMapMarkerAlt, title: 'Address', detail: '12/54, Manufacturing Hub, Chennai, India', link: null },
     { icon: FaClock, title: 'Working Hours', detail: 'Mon - Sat, 9:00 AM - 6:00 PM', link: null },
   ]
 
